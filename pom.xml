@@ -14,9 +14,9 @@
     <name>controleFinanceiro</name>
     <description>API de controle e planejamento financeiro</description>
 
-    <properties>
+    <!--<properties>
         <java.version>17</java.version>
-    </properties>
+    </properties>-->
 
     <dependencies>
         <dependency>
