@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.alura</groupId>
     <artifactId>controleFinanceiro</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>controleFinanceiro</name>
     <description>API de controle e planejamento financeiro</description>
 
@@ -113,7 +113,6 @@
     </dependencies>
 
     <build>
-        <finalName>controleFinanceiro</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
