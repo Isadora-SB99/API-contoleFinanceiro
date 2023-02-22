@@ -32,14 +32,20 @@ jobs:
       with:
         # Name of the Docker image
         image: isadorasb99/controle-financeiro
+        
         # Tags override for Docker image
-        tags: ${{github.ref_name}}
+        #tags: ${{github.ref_name}}
+        tags: isadorasb99/controle-financeiro:testando-CI
+        
         # Target Docker registry
         #registry: isadorasb99
         registry: https://registry.hub.docker.com/v2/
         #registry: registry
+        
         # Location of Dockerfile, if not Dockerfile in root directory
         dockerfile: Dockerfile
+        #dockerfile: ./Dockerfile
+        
         # Docker registry username
         username: isadorasb99
         # Docker registry password
