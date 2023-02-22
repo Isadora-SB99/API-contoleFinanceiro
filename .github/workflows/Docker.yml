@@ -36,20 +36,7 @@ jobs:
         tags: isadorasb99/controle-financeiro-ci:${{github.ref_name}}
         # Target Docker registry
         #registry: isadorasb99
+        registry: https://registry.hub.docker.com/v2/
+        #registry: registry
         # Location of Dockerfile, if not Dockerfile in root directory
         dockerfile: ./Dockerfile
-        # Directory to run `docker build` from, if not project root
-        #directory: .
-        # Docker build arguments passed via --build-arg
-        #buildArgs: # optional
-        # Docker build labels passed via --label
-        #labels: # optional
-        # Docker build target passed via --target
-        #target: # optional
-        # Docker build platform passed via --platform
-        #platform: # optional
-        # Docker registry username
-        #username: # optional
-        # Docker registry password
-        #password: # optional
-
