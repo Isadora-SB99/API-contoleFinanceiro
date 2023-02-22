@@ -19,10 +19,37 @@ jobs:
         username: isadorasb99
         password: ${{ secrets.PASSWORD_DOCKER_HUB }}
         
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v4.0.0
+    #- name: Build and push Docker images
+      #uses: docker/build-push-action@v4.0.0
+      #with:
+        #context: .
+        #file: ./Dockerfile
+        #push: true
+        #tags: isadorasb99/controle-financeiro-ci:${{github.ref_name}}
+      
+    - name: Docker Build & Push Action
+      uses: mr-smithers-excellent/docker-build-push@v5.9
       with:
-        context: .
-        file: ./Dockerfile
-        push: true
+        # Name of the Docker image
+        image: isadorasb99/controle-financeiro
+        # Tags override for Docker image
         tags: isadorasb99/controle-financeiro-ci:${{github.ref_name}}
+        # Target Docker registry
+        #registry: isadorasb99
+        # Location of Dockerfile, if not Dockerfile in root directory
+        dockerfile: ./Dockerfile
+        # Directory to run `docker build` from, if not project root
+        #directory: .
+        # Docker build arguments passed via --build-arg
+        #buildArgs: # optional
+        # Docker build labels passed via --label
+        #labels: # optional
+        # Docker build target passed via --target
+        #target: # optional
+        # Docker build platform passed via --platform
+        #platform: # optional
+        # Docker registry username
+        #username: # optional
+        # Docker registry password
+        #password: # optional
+
