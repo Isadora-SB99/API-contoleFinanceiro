@@ -31,7 +31,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5.9
       with:
         # Name of the Docker image
-        image: isadorasb99/controle-financeiro
+        image: controle_financeiro
         
         # Tags override for Docker image
         #tags: ${{github.ref_name}}
@@ -43,8 +43,8 @@ jobs:
         #registry: registry
         
         # Location of Dockerfile, if not Dockerfile in root directory
-        dockerfile: Dockerfile
-        #dockerfile: ./Dockerfile
+        #dockerfile: Dockerfile
+        dockerfile: ./Dockerfile
         
         # Docker registry username
         username: isadorasb99
