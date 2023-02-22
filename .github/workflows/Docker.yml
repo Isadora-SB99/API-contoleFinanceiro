@@ -39,7 +39,7 @@ jobs:
         registry: https://registry.hub.docker.com/v2/
         #registry: registry
         # Location of Dockerfile, if not Dockerfile in root directory
-        dockerfile: ./Dockerfile
+        dockerfile: Dockerfile
         # Docker registry username
         username: isadorasb99
         # Docker registry password
