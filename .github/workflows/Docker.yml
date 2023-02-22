@@ -33,7 +33,7 @@ jobs:
         # Name of the Docker image
         image: isadorasb99/controle-financeiro
         # Tags override for Docker image
-        tags: isadorasb99/controle-financeiro:${{github.ref_name}}
+        tags: ${{github.ref_name}}
         # Target Docker registry
         #registry: isadorasb99
         registry: https://registry.hub.docker.com/v2/
