@@ -35,7 +35,8 @@ jobs:
         
         # Tags override for Docker image
         #tags: ${{github.ref_name}}
-        tags: isadorasb99/controle-financeiro:testando-CI
+        #tags: isadorasb99/controle-financeiro:testando-CI
+        tags: testando-CI
         
         # Target Docker registry
         #registry: isadorasb99
