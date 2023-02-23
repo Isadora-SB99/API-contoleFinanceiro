@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.alura.controlefinanceiro.controller.AutenticacaoControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.296 s - in br.com.alura.controlefinanceiro.controller.AutenticacaoControllerTest

@@ -1,0 +1,4 @@
+br\com\alura\controlefinanceiro\controller\ResumoControllerTest.class
+br\com\alura\controlefinanceiro\repository\PerfilRepositoryTest.class
+br\com\alura\controlefinanceiro\controller\AutenticacaoControllerTest.class
+br\com\alura\controlefinanceiro\ControleFinanceiroApplicationTests.class
