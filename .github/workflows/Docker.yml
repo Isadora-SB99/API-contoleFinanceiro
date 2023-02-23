@@ -39,8 +39,8 @@ jobs:
         
         # Target Docker registry
         #registry: isadorasb99
-        registry: https://registry.hub.docker.com/v2/
-        #registry: registry
+        #registry: https://registry.hub.docker.com/v2/
+        registry: docker.io
         
         # Location of Dockerfile, if not Dockerfile in root directory
         #dockerfile: Dockerfile
