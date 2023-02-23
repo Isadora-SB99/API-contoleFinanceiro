@@ -1,0 +1,16 @@
+name: Entrega contínua
+
+on:
+  workflow_call:
+
+jobs:
+
+  ec2:
+      runs-on: windows-latest
+
+      steps:      
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: jar-artifact
+      - uses: actions/checkout@v3
