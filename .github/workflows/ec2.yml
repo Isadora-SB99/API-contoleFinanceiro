@@ -2,6 +2,15 @@ name: Entrega contínua
 
 on:
   workflow_call:
+  
+env:
+  AWS_REGION: us-east-2
+  REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+  REMOTE_USER: ${{ secrets.REMOTE_USER }}
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
 
@@ -16,71 +25,22 @@ jobs:
           
       - uses: actions/checkout@v3
       
-#      - name: Deploy to Server
- #       uses: easingthemes/ssh-deploy@main
-  #      env:
-   #         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-    #        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-     #       REMOTE_USER: ${{ secrets.REMOTE_USER }}
-      #      TARGET: /home/${{ secrets.REMOTE_USER }}
-            
-#      - name: SSH Remote Commands
- #       uses: appleboy/ssh-action@v0.1.7
-  #      with:
-   #       host: ${{ secrets.REMOTE_HOST }}
-    #      username: ${{ secrets.REMOTE_USER }}
-     #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #    port: 22
-       #   script: |
-        #    export HOST=${{ secrets.DBHOST }}
-         #   export USER=${{ secrets.DBUSER }}
-          #  export PASSWORD=${{ secrets.DBPASSWORD }}
-           # export DBNAME=${{ secrets.DBNAME }}
-            #export DBPORT=${{ secrets.PORT }}
-          
-          
-      #- name: Remote SSH Commands
-      #https://github.com/marketplace/actions/remote-ssh-commands
-       # uses: fifsky/ssh-action@v0.0.6
-        #with:
-          # Command to execute on the remote server.
-        #  command: 
-          # Hostname or IP address of the server.
-         # host: # optional, default is localhost
-          # Username for authentication.
-          #user: # optional, default is root
-          # Port number of the server.
-       #   port: # optional, default is 22
-          # String that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-   #       key: # optional
-          # File location to an identity file
-    #      keyfile: # optional
-          # Password for authentication.
-     #     pass: # optional
-          # SSH parameters for example: -tt.
-      #    args: # optional
-          
-      - name: Deploy in EC2
-        env:
-            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            HOSTNAME : ${{ secrets.REMOTE_HOST }}
-            USER_NAME : ${{ secrets.REMOTE_USER }}
-            AWS_DEFAULT_REGION: us-east-2
-            
+      - name: Configure SSH
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${REMOTE_USER}@${REMOTE_HOST} '
-          
-            #Now we have got the access of EC2 and we will start the deploy .
-            cd /home/ubuntu/CounterApp &&
-            git checkout master &&
-            git fetch --all &&
-            git reset --hard origin/master &&
-            git pull origin master &&
-            docker-compose -f docker-compose.prod.yml up -d --build 
-          '          
-          
-          
-          
-          
-          
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/github-actions-key
+          chmod 600 ~/.ssh/github-actions-key
+          cat >>~/.ssh/config <<END
+          Host ec2
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/github-actions-key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_HOST: ${{ env.REMOTE_HOST }}
+          SSH_USER: ${{ env.REMOTE_USER }}
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }} 
+      
+      - name: List home directory
+        run: ssh ec2 'ls -la'
