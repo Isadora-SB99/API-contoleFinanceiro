@@ -65,6 +65,7 @@ jobs:
             PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
             HOSTNAME : ${{ secrets.REMOTE_HOST }}
             USER_NAME : ${{ secrets.REMOTE_USER }}
+            AWS_DEFAULT_REGION: us-east-2
             
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
