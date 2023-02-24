@@ -6,7 +6,7 @@ on:
 jobs:
 
   ec2:
-      runs-on: windows-latest
+      runs-on: ubuntu-latest
 
       steps:      
       - name: Download a Build Artifact
@@ -23,12 +23,46 @@ jobs:
             REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
             REMOTE_USER: ${{ secrets.REMOTE_USER }}
             TARGET: /home/${{ secrets.REMOTE_USER }}
-      
-      #- name: ssh deploy
-       # uses: easingthemes/ssh-deploy@v4.1.8
+            
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            export HOST=${{ secrets.DBHOST }}
+            export USER=${{ secrets.DBUSER }}
+            export PASSWORD=${{ secrets.DBPASSWORD }}
+            export DBNAME=${{ secrets.DBNAME }}
+            export PORT=${{ secrets.PORT }}
+          
+          
+      #- name: Remote SSH Commands
+      #https://github.com/marketplace/actions/remote-ssh-commands
+       # uses: fifsky/ssh-action@v0.0.6
         #with:
-         # SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          #REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          #REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          #TARGET: /home/${{ secrets.REMOTE_USER }}
-
+          # Command to execute on the remote server.
+        #  command: 
+          # Hostname or IP address of the server.
+         # host: # optional, default is localhost
+          # Username for authentication.
+          #user: # optional, default is root
+          # Port number of the server.
+       #   port: # optional, default is 22
+          # String that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
+   #       key: # optional
+          # File location to an identity file
+    #      keyfile: # optional
+          # Password for authentication.
+     #     pass: # optional
+          # SSH parameters for example: -tt.
+      #    args: # optional
+          
+          
+          
+          
+          
+          
+          
